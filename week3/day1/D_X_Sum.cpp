@@ -1,0 +1,85 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define pi acos(-1)
+#define endl "\n"
+#define nl "\n"
+#define ll long long
+#define pb push_back
+#define NO cout<<"NO"<<endl
+#define YES cout<<"YES"<<endl
+#define all(x) (x).begin(), (x).end()
+#define rall(x) x.rbegin(), x.rend()
+#define fix(n) fixed<<setprecision(n) 
+#define mem(a,b) memset(a,b,sizeof(a))
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+
+int main()
+{
+    fast_io;
+    int tc; cin >> tc;
+    while (tc--)
+    {
+        int r, c;
+        cin >> r>> c;
+
+        // map<int, int> diff, total;
+
+        int mat[r][c];
+
+        for (int i=0; i<r; i++)
+        {
+            for (int j=0; j<c; j++)
+            {
+                cin >> mat[i][j];
+            }
+        }
+
+        int curSum, mxSum = 0;
+        for (int i=0; i<r; i++)
+        {
+            for (int j=0; j<c; j++)
+            {
+                // self
+                curSum = mat[i][j];
+
+                // upper left
+                int p, q;
+                p = i-1, q = j-1;
+                while(p>= 0 and p< r and q>= 0 and q<c)
+                {
+                    curSum += mat[p][q];
+                    p--; q--;
+                }
+                // lower right
+                p = i+1, q = j+1;
+                while(p>= 0 and p< r and q>= 0 and q<c)
+                {
+                    curSum += mat[p][q];
+                    p++; q++;
+                }
+                // upper right
+                p = i-1, q = j+1;
+                while(p>= 0 and p< r and q>= 0 and q<c)
+                {
+                    curSum += mat[p][q];
+                    p--; q++;
+                }
+                // lower left
+                p = i+1, q = j-1;
+                while(p>= 0 and p< r and q>= 0 and q<c)
+                {
+                    curSum += mat[p][q];
+                    p++; q--;
+                }
+                mxSum = max(curSum, mxSum);
+                
+                
+
+            }
+        }
+
+        cout << mxSum<<nl;
+ 
+
+    }   
+}
